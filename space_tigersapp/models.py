@@ -8,10 +8,12 @@ class Product(models.Model):
     image_url = models.CharField(max_length=2083)
     
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    fname = models.CharField(max_length=30)
+    lname = models.CharField(max_length=30)
+    mi = models.CharField(max_length=1)
     email = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    phone = models.CharField(max_length=15)
+    avatar_url = models.CharField(max_length=2083)
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.fname} {self.lname}"
