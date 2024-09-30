@@ -18,17 +18,40 @@
     }
     </style>
     
-    <div class="flex-container">
-        {% for product in products %}
-            <div class="card" style="width: 27rem;">
-    <!--        <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap" Style="width:95%"> -->
-                <img class="card-img-top" src="{{ product.image_url }}" alt="Card image cap" Style="width:250px;height:250px;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">${{ product.price }}</p>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                </div>
-            </div>
-       {% endfor %}
+    <div class="mt-6 px-6 py-12 bg-gray-500 rounded-xl">
+      <h2 class="mb-12 text-3xl text-center text-black">Newest Items</h2>
+      <div id="productCarousel" class="carousel slide relative rounded-xl" data-ride="carousel" data-interval="5000" style="min-height: 300px;"> <!-- Set a minimum height -->
+          <div class="carousel-inner">
+              {% for product in products %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <div class="flex justify-center"> 
+                      <div class="max-w-sm rounded overflow-hidden shadow-lg"> 
+                        <img src="{{ product.image_url }}" alt="Card image cap" style="width: 350px; height: 350px; object-fit: cover;">
+    
+                          <div class="px-6 py-4">
+                              <h5 class="font-bold text-xl mb-2">{{ product.name }}</h5>
+                              <p class="text-gray-700 text-base">${{ product.price }}</p>
+                              <a href="#" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition">Add to Cart</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div> 
+    
+          <!-- Carousel controls -->
+          <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+            <img src="https://game-icons.net/icons/000000/transparent/1x1/lorc/triple-claws.png" 
+                 alt="Previous" style="width: 100px; height: 100px; transform: scaleX(-1);"> <!-- Flipped horizontally -->
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+            <img src="https://game-icons.net/icons/000000/transparent/1x1/lorc/triple-claws.png" 
+                 alt="Next" style="width: 100px; height: 100px;"> <!-- Normal orientation -->
+            <span class="sr-only">Next</span>
+        </a>
+        
+        
+      </div>
     </div>
 {% endblock %}
