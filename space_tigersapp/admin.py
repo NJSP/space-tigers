@@ -7,7 +7,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'stock')
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email', 'phone_number')
+    list_display = ('fname', 'lname', 'mi', 'email', 'phone', 'avatar_url')
 
 admin.site.register(Product)
 admin.site.register(Customer)
