@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=”UTF-8”>
+    <meta name=”viewport” content=”device-width, initial-scale=1.0”>
+    
+
+
+    <title>{% block title %}Space Tigers Rule!{% endblock %}</title>
+    <!-- This links are for CSS from Bootstrap and Tailwind-->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- This links are for CSS from Bootstrap and Tailwind-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a, nav ul li p, nav ul li form {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover, nav ul li form:hover {
+            background-color: #575757;
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            padding: 20px;
+        }
+        .container {
+            color: white;
+        }
+        input[type="text"], input[type="email"], input[type="password"], textarea {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated and user.is_staff %}
+                <li><a href="{% url 'customer_list' %}">Customers</a></li>
+            {% endif %}
+            <li><a href="{% url 'customer_new' %}">Add Customer</a></li>
+            {% if user.is_authenticated %}
+                <li><form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log Out</button></form></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Log In</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <list><a href="{% url 'profile' %}">Profile</a></list>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li style="float: right;"><p>Hi {{ user.username }}!</p></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

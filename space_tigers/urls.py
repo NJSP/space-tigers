@@ -17,11 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from space_tigersapp import views
+from django.contrib.auth.views import (
+    LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+)
+from django.views.generic.base import TemplateView  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('space_tigersapp.urls')),
-    path('', views.index, name='index'),
+    path("", TemplateView.as_view(template_name="index.html"), name="index"),  # new
     path('customers/new', views.customer_new, name='customer_new'),  # Define a new customer view
     path('customers/', views.customer_list, name='customers'),  # Define a success view or page
 
