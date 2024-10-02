@@ -1,0 +1,8 @@
+Model Information:
+* title:	Froppy figurine sculpt
+* source:	https://sketchfab.com/3d-models/froppy-figurine-sculpt-c583850d5eb441e8b55652633b4cc4a3
+* author:	dragonballfan (https://sketchfab.com/dragonballfan)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

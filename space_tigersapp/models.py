@@ -5,7 +5,10 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField()
     stock = models.IntegerField()
-    image_url = models.CharField(max_length=2083)
+    
+        # New field for the directory of the 3D model
+    model_directory = models.CharField(max_length=255, blank=True, null=True)
+    model_file_name = models.CharField(max_length=100, blank=True, null=True)
     
 class Customer(models.Model):
     fname = models.CharField(max_length=30)

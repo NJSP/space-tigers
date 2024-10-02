@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mt lady
+* source:	https://sketchfab.com/3d-models/mt-lady-fe18c7b12acf4e93810135ad96168853
+* author:	Matt (https://sketchfab.com/furyiousfight)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mt lady" (https://sketchfab.com/3d-models/mt-lady-fe18c7b12acf4e93810135ad96168853) by Matt (https://sketchfab.com/furyiousfight) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

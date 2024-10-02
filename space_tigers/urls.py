@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from space_tigersapp import views
 
 urlpatterns = [
@@ -25,4 +27,4 @@ urlpatterns = [
     path('customers/new', views.customer_new, name='customer_new'),  # Define a new customer view
     path('customers/', views.customer_list, name='customers'),  # Define a success view or page
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
