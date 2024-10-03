@@ -34,42 +34,72 @@
             margin: 0;
             padding: 0;
         }
+    
         nav {
             background-color: #333;
             overflow: hidden;
         }
+    
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
+    
         nav ul li {
             float: left;
         }
+    
         nav ul li a {
             display: block;
             color: white;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
+            transition: background-color 0.3s; /* Smooth background transition */
         }
+    
         nav ul li a:hover {
             background-color: #575757;
         }
+    
         .content {
             padding: 20px;
         }
+    
         .container {
             color: white;
         }
-        input[type="text"], input[type="email"], input[type="password"], textarea {
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #ccc;
-        padding: 10px;
-        width: 100%;
-        
+    
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box; /* Ensure padding doesn't affect total width */
+            margin-bottom: 10px; /* Space between inputs */
+            border-radius: 4px; /* Rounded corners for inputs */
+        }
+    
+        .carousel-icon {
+            width: 100px;
+            height: 100px;
+            background-color: white; /* Change this to the desired solid color */
+            border-radius: 10%; /* Optional: Add border radius for rounded corners */
+            transition: transform 0.3s; /* Smooth transition for the scaling effect */
+            filter: brightness(0) invert(1); /* Example to make the icon white; adjust as needed */
+        }
+    
+        .carousel-control-prev:hover .carousel-icon,
+        .carousel-control-next:hover .carousel-icon {
+            transform: scale(1.1); /* Grow by 10% on hover */
+        }
     </style>
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark"> <!-- Changed to navbar-dark for better contrast -->
