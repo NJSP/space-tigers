@@ -74,7 +74,6 @@
             {% else %}
                 <li><a href="{% url 'login' %}">Log In</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                <list><a href="{% url 'profile' %}">Profile</a></list>
             {% endif %}
             {% if user.is_authenticated %}
                 <li style="float: right;"><p>Hi {{ user.username }}!</p></li>
