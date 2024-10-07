@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Product, Customer
 from .forms import CustomerForm, UserForm
@@ -70,3 +70,14 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'signup.html', {'form': form})
+
+def detail(request, id):
+    model_3d = get_object_or_404(Product, id=id)
+
+    related_model_3d = Product.objects.exclude(id=id).order_by('?')[:3]
+     
+    return render(request, 'detail.html', {
+        'model_3d': model_3d,
+        'related_model_3d': related_model_3d,
+        
+    })

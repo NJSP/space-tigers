@@ -1,0 +1,8 @@
+Model Information:
+* title:	Kyoka Jiro (Hero Costume)
+* source:	https://sketchfab.com/3d-models/kyoka-jiro-hero-costume-8cd48121424b41338138b9d58d68282b
+* author:	Tigerar1 (https://sketchfab.com/allanromanreyes)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

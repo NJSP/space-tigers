@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ model_3d.name }} {% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-3xl text-center">{{ model_3d.name }}</h2>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+    <div class="col-span-1 md:col-span-3">
+        <div class="border border-gray-300 rounded-xl shadow-lg overflow-hidden bg-gray-800">
+            <model-viewer 
+                src="{% static model_3d.model_directory %}/{{ model_3d.model_file_name }}"
+                alt="A 3D model of {{ model_3d.name }}" 
+                shadow-intensity="1" 
+                camera-controls 
+                ar 
+                style="width: 100%; height: 700px;" 
+                orientation="0 0 0">
+            </model-viewer>
+        </div>
+    </div>
+    <div class="col-span-1 md:col-span-2 p-6 bg-gray-100 rounded-xl flex flex-col" style="height: 700px;">
+        <h1 class="mb-6 text-3xl">{{ model_3d.name }}</h1>
+        <p class="text-gray-500"><strong>Price: </strong>{{ model_3d.price }}</p>
+        <br>
+        {% if model_3d.description %}
+            <p class="text-gray-700">
+                <strong class="text-gray-500">Description:</strong><br>
+                {{ model_3d.description }}
+            </p>
+        {% endif %}
+        
+        <div class="flex-grow"></div>
+        <div class="flex flex-col space-y-6">
+            <a href="#" class="inline-block px-1 py-4 font-semibold bg-pink-500 text-white text-center rounded-xl hover:bg-pink-700">Add to Cart</a>
+            <a href="/" class="inline-block px-1 py-4 font-semibold bg-black text-white text-center rounded-xl hover:bg-gray-700">Back</a>
+        </div>
+    </div>
+</div>
+
+<div class="mt-6 px-6 py-12 bg-gray-800 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">Other Models</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for r_model_3d in related_model_3d %}
+        <div class="rounded-xl">
+            <div class="p-6">
+                <a href="{% url 'detail' r_model_3d.id %}">
+                    <h2 class="mb-4 text-3xl text-white text-center">{{ r_model_3d.name }}</h2>
+                </a>
+                <div class="border border-gray-300 rounded-xl shadow-lg overflow-hidden bg-gray-800">
+                    <model-viewer 
+                        src="{% static r_model_3d.model_directory %}/{{ r_model_3d.model_file_name }}"
+                        alt="A 3D model of {{ r_model_3d.name }}" 
+                        shadow-intensity="1" 
+                        camera-controls 
+                        ar 
+                        style="width: 100%; height: 300px;"  
+                        orientation="0 0 0">  
+                    </model-viewer>
+                </div>
+            </div>
+            <a href="{% url 'detail' r_model_3d.id %}"> 
+                <div class="p-6 rounded-xl">
+                    <p class="text-white text-center">Price: {{ r_model_3d.price }}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+

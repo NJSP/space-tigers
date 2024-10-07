@@ -1,0 +1,11 @@
+Model Information:
+* title:	AmexGators
+* source:	https://sketchfab.com/3d-models/amexgators-7499917deb1c47f6b50bb6806852531b
+* author:	MrLagr6 (https://sketchfab.com/MrLagr6)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "AmexGators" (https://sketchfab.com/3d-models/amexgators-7499917deb1c47f6b50bb6806852531b) by MrLagr6 (https://sketchfab.com/MrLagr6) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

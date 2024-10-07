@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wakfu Characters: Yugo
+* source:	https://sketchfab.com/3d-models/wakfu-characters-yugo-23153d7ae7e24744b705e93741b70258
+* author:	nataliedesign (https://sketchfab.com/nataliedesign)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wakfu Characters: Yugo" (https://sketchfab.com/3d-models/wakfu-characters-yugo-23153d7ae7e24744b705e93741b70258) by nataliedesign (https://sketchfab.com/nataliedesign) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
