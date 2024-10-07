@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Product, Customer
-from .forms import CustomerForm
+from .forms import CustomerForm, UserForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -45,3 +49,24 @@ def customer_delete(request, id):
         customer.delete()
         return redirect('customer_list')
     return render(request, 'customer_confirm_delete.html', {'customer': customer})
+
+
+# Automatically make a new user using the information from the CustomerForm
+class UserCreateView(CreateView):
+    template_name = 'signup.html'
+    form_class = UserForm
+    success_url = reverse_lazy('success')
+    
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success')
+    else:
+        form = UserForm()
+    return render(request, 'signup.html', {'form': form})
