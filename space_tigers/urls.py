@@ -30,8 +30,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('space_tigersapp.urls')),
     path("", TemplateView.as_view(template_name="index.html"), name="index"), 
-    path('customers/new', views.customer_new, name='customer_new'),  # Define a new customer view
-    path('customers/', views.customer_list, name='customers'),  # Define a success view or page
     path('detail/',views.detail, name='detail'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

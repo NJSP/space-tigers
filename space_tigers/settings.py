@@ -128,6 +128,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'login'
 # Redirect to index URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = "index"  
 LOGOUT_REDIRECT_URL = "index"
