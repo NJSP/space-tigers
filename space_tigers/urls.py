@@ -31,6 +31,7 @@ urlpatterns = [
     path('', include('space_tigersapp.urls')),
     path("", TemplateView.as_view(template_name="index.html"), name="index"), 
     path('detail/',views.detail, name='detail'),
+    path('cart/', include('cart.urls', namespace='cart')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

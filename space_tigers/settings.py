@@ -24,9 +24,8 @@ SECRET_KEY = 'django-insecure--frn3g!@-$#(2x7cy2=g3xq34y+-!7rlbj84o(&(140oqzi-a5
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
+# This is to allow local network sharing with other classmates
+ALLOWED_HOSTS = ['10.1.10.224', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'space_tigersapp.apps.SpaceTigersappConfig',
     'accounts',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+# this is to keep track of the shopping cart sessions
+CART_SESSION_ID = 'cart'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

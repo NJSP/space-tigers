@@ -97,7 +97,14 @@
             </div>
             <div class="navbar-nav ml-auto align-items-center">
                 {% if user.is_authenticated %}
-                <span class="navbar-text mr-5" style="position: relative; right: 50px;">Hi {{ user.username }}!</span>
+                <span class="navbar-text mr-3">Hi {{ user.username }}!</span>
+                
+                <!-- Cart Button Styled Similarly to Log Out -->
+                <a href="{% url 'cart:cart_detail' %}" class="btn inline-block px-3 py-2 font-semibold bg-white text-black text-center rounded-xl hover:bg-gray-200 mr-3">
+                    Cart
+                </a>
+    
+                <!-- Log Out Button -->
                 <form class="form-inline" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <button class="btn inline-block px-3 py-2 font-semibold bg-white text-black text-center rounded-xl hover:bg-gray-200" type="submit">Log Out</button>
@@ -106,7 +113,7 @@
             </div>
         </div>
     </nav>
-        
+    
     
     <div class="content">
         {% block content %}{% endblock %}
