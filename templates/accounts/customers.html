@@ -60,16 +60,15 @@
 
 <h1>Customer List</h1>
 <div class="flex-container">
-    {% for customer in customers %}
-        <div class="card">
-            <img class="card-img-top" src="{{ customer.avatar_url }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{ customer.fname }} {{ customer.mi }} {{ customer.lname }}</h5>
-                <p class="card-text">{{ customer.email }}</p>
-                <a href="{% url 'customer_edit' customer.id %}">Edit</a>
-                <a href="{% url 'customer_delete' customer.id %}">Delete</a>
-            </div>
-        </div>
-    {% endfor %}
+  {% for profile in profiles %}
+    <div class="card">
+      <img class="card-img-top" src="{{ profile.avatar.url }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ profile.first_name }} {{ profile.mi }} {{ profile.last_name }}</h5>
+        <p class="card-text">{{ profile.email }}</p>
+        <a href="{% url 'profile2' profile.user.id %}" class="btn btn-primary">View Profile</a>
+      </div>
+    </div>
+  {% endfor %}
 </div>
 {% endblock %}

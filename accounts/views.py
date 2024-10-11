@@ -11,48 +11,74 @@ from django.views.generic.edit import FormView
 from .forms import RegisterForm
 from django.contrib.auth.models import User
 from .forms import UserUpdateForm, ProfileUpdateForm
-
+from .models import Profile
+from django.views.generic import DetailView
+from django.shortcuts import get_object_or_404
 
 
     
 
 class MyProfile(LoginRequiredMixin, View):
-    def get(self, request):
-        user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
+    def get(self, request, pk=None):
+        if pk:
+            profile_user = get_object_or_404(User, pk=pk)
+        else:
+            profile_user = request.user
+
+        user_form = UserUpdateForm(instance=profile_user)
+        profile_form = ProfileUpdateForm(instance=profile_user.profile)
 
         context = {
+            'profile_user': profile_user,
             'user_form': user_form,
-            'profile_form': profile_form
+            'profile_form': profile_form,
+            'is_owner': request.user == profile_user,
+            'edit_mode': request.GET.get('edit', 'false') == 'true'
         }
         return render(request, 'accounts/profile.html', context)
-    
-    def post(self, request):
-        user_form = UserUpdateForm(
-            request.POST,
-            instance=request.user
-        )
-        profile_form = ProfileUpdateForm(
-            request.POST,
-            request.FILES,
-            instance=request.user.profile
-        )
+
+    def post(self, request, pk=None):
+        profile_user = request.user
+        #if profile_user == request.user:
+         #   profile_user = get_object_or_404(User, pk=pk) if pk else request.user
+        #if request.user != profile_user:
+         #   return redirect('profile', pk=profile_user.pk)
+
+        user_form = UserUpdateForm(request.POST, instance=profile_user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile_user.profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-
             messages.success(request, 'Your profile has been updated successfully!')
-
             return redirect('profile')
-        else:
-            context = {
-                'user_form': user_form,
-                'profile_form': profile_form
-            }
-            messages.error(request, 'Error updating your profile')
 
-            return render(request, 'accounts/profile.html', context)
+        context = {
+            'profile_user': profile_user,
+            'user_form': user_form,
+            'profile_form': profile_form,
+            'is_owner': True,
+            'edit_mode': True
+        }
+        return render(request, 'accounts/profile.html', context)
+        
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'accounts/profile.html'
+    context_object_name = 'profile_detail'
+
+    def get_object(self):
+        user_id = self.kwargs.get('pk')
+        return Profile.objects.get(user_id=user_id)
+    
+def ProfileDetailView2(request, pk):
+    profile = Profile.objects.get(user_id=pk)
+    is_owner = profile.user == request.user
+    context = {
+        'profile_detail': profile,
+        'is_owner': is_owner, 
+    }
+    return render(request, 'accounts/profile.html', context)
         
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
@@ -75,3 +101,12 @@ class RegisterView(FormView):
         if user:
             login(self.request, user)
         return super(RegisterView, self).form_valid(form)
+    
+class CustomerListView(LoginRequiredMixin, View):
+    def get(self, request):
+        profiles = Profile.objects.all()  # Query the Profile model
+        context = {
+            'profiles': profiles
+        }
+        return render(request, 'accounts/customers.html', context)
+    
