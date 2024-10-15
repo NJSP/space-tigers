@@ -23,7 +23,30 @@
     <style>
         body {
             font-family: 'Amatic SC', sans-serif;
-            font-size: 24px; 
+            font-size: 20px; /* Set default size for content */
+        }
+
+        /* Specific font size for the navbar */
+        .navbar-nav, .navbar-brand {
+            font-size: 28px; /* Larger size for the navbar */
+        }
+
+        /* Specific styling for content sections */
+        .content {
+            font-size: 20px; /* Regular size for descriptions and content */
+            line-height: 1.6; /* Improved readability */
+        }
+
+        .content h2, .content h3 {
+            font-size: 24px; /* Adjusted sizes for headings within content */
+        }
+
+        /* Styling for cart and buttons to avoid overflow issues */
+        .cart-buttons {
+            max-width: 100%; /* Ensure buttons don’t overflow */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem; /* Add a small gap between buttons */
         }
 
         nav {

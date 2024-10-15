@@ -9,10 +9,10 @@
         <thead class="bg-gray-800 text-white">
             <tr>
                 <th class="px-2 py-3 text-left text-sm font-medium uppercase">Product</th>
-                <th class="px-2 py-3 text-left text-sm font-medium uppercase">Quantity</th>
+                <th class="px-2 py-3 text-left text-sm font-medium uppercase hidden md:table-cell">Quantity</th>
                 <th class="px-2 py-3 text-left text-sm font-medium uppercase hidden md:table-cell">Price</th>
                 <th class="px-2 py-3 text-left text-sm font-medium uppercase hidden md:table-cell">Total</th>
-                <th class="px-2 py-3"></th> <!-- Actions column -->
+                <th class="px-2 py-3 hidden md:table-cell"></th> <!-- Actions column -->
             </tr>
         </thead>
         <tbody class="bg-gray-100 divide-y divide-gray-200">
@@ -36,7 +36,7 @@
                         </model-viewer>
                     </div>
                 </td>
-                <td class="px-2 py-4">
+                <td class="px-2 py-4 hidden md:table-cell">
                     <!-- Quantity Input Field -->
                     <form action="{% url 'cart:cart_update' item.product.id %}" method="POST" class="flex items-center">
                         {% csrf_token %}
@@ -54,7 +54,7 @@
                 <td class="px-2 py-4 hidden md:table-cell">
                     <div class="text-gray-900">${{ item.total_price }}</div>
                 </td>
-                <td class="px-2 py-4 text-right">
+                <td class="px-2 py-4 hidden md:table-cell text-right">
                     <!-- Remove Button -->
                     <form action="{% url 'cart:cart_remove' item.product.id %}" method="POST">
                         {% csrf_token %}
@@ -64,9 +64,21 @@
                         </button>
                     </form>
                 </td>
-                <!-- Show price and total on small screens as stacked items -->
+                <!-- Show quantity, price, and total below the product for small screens -->
                 <td class="px-2 py-4 md:hidden">
-                    <div class="flex justify-between">
+                    <!-- Quantity Input Field for small screens -->
+                    <div class="flex items-center mt-2">
+                        <form action="{% url 'cart:cart_update' item.product.id %}" method="POST" class="flex items-center">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ item.quantity }}" min="1"
+                                class="w-16 text-center border border-gray-300 rounded-md">
+                            <button type="submit"
+                                class="ml-2 inline-block px-4 py-2 font-semibold bg-green-500 text-white text-center rounded-xl hover:bg-green-700">
+                                Update
+                            </button>
+                        </form>
+                    </div>
+                    <div class="flex justify-between mt-2">
                         <span class="text-gray-500">Price:</span>
                         <span class="text-gray-700">${{ item.price }}</span>
                     </div>
@@ -74,6 +86,14 @@
                         <span class="text-gray-500">Total:</span>
                         <span class="text-gray-900">${{ item.total_price }}</span>
                     </div>
+                    <!-- Remove Button for small screens -->
+                    <form action="{% url 'cart:cart_remove' item.product.id %}" method="POST" class="mt-2">
+                        {% csrf_token %}
+                        <button type="submit"
+                            class="w-full px-4 py-2 font-semibold bg-red-500 text-white text-center rounded-xl hover:bg-red-700">
+                            Remove
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% empty %}
@@ -87,12 +107,10 @@
 
 <!-- Cart Summary Section -->
 <div class="flex flex-col lg:flex-row w-full items-center p-6 bg-gray-800 rounded-xl shadow-lg mt-6">
-    <!-- Left Side: Title (full width on small screens, 1/3 width on large screens) -->
     <div class="w-full lg:w-1/3 text-center lg:text-left">
         <h3 class="text-2xl font-semibold text-white">Cart Summary</h3>
     </div>
 
-    <!-- Right Side: Cart Details (full width on small screens, 2/3 width on large screens) -->
     <div class="w-full lg:w-2/3 text-center lg:text-right mt-4 lg:mt-0">
         <div class="text-gray-200 mb-2">
             <span>Total Items:</span>
@@ -102,11 +120,8 @@
             <span>Total Price:</span>
             <span>${{ cart.get_total_price }}</span>
         </div>
-
-        <!-- Buttons Section Inside Cart Details -->
         <div class="flex justify-center lg:justify-end space-x-4">
-            <a href="/"
-                class="inline-block px-4 py-2 font-semibold bg-black text-white text-center rounded-xl hover:bg-gray-700">
+            <a href="/" class="inline-block px-4 py-2 font-semibold bg-black text-white text-center rounded-xl hover:bg-gray-700">
                 Continue Shopping
             </a>
             <form action="{% url 'cart:cart_buy' %}" method="POST">
