@@ -78,7 +78,10 @@ def ProfileDetailView2(request, pk):
         'profile_detail': profile,
         'is_owner': is_owner, 
     }
-    return render(request, 'accounts/profile.html', context)
+    if is_owner:
+        return redirect('profile')
+    else:
+        return render(request, 'accounts/profile.html', context)
         
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
